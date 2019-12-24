@@ -2,12 +2,13 @@
 * @Author: sottxiong
 * @Date:   2019-12-25 06:39:19
 * @Last Modified by:   sottxiong
-* @Last Modified time: 2019-12-25 07:33:19
+* @Last Modified time: 2019-12-25 07:39:42
 */
 package engine
 
 import(
 	"fmt"
+	"os"
 	"strings"
 	"github.com/scott-x/gutils/cmd"
 	"github.com/scott-x/gutils/fs"
@@ -88,5 +89,10 @@ func runTask(path string) bool{
 	}
 	newContent = append(newContent,"`")
 	fs.WriteString("./iconfont/iconfont.js", strings.Join(newContent,"\n") )
+	//delete iconfont.css
+    err =os.Remove("./iconfont/iconfont.css")
+    if err!=nil{
+    	panic(err)
+    }
 	return flag
 }
